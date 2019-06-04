@@ -1,0 +1,42 @@
+---
+title: "Class 14"
+author: "Mary Garcia"
+date: "May 16, 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+counts <- read.csv("data/airway_scaledcounts.csv", stringsAsFactors = FALSE)
+metadata <-  read.csv("data/airway_metadata.csv", stringsAsFactors = FALSE)
+```
+
+```{r}
+View(metadata)
+```
+
+```{r}
+control <- metadata[metadata[,"dex"]=="control",]
+control.mean <- rowSums( counts[ ,control$id] )/4 
+names(control.mean) <- counts$ensgene
+```
+
+```{r}
+treated <- metadata[metadata[,"dex"]=="treated",]
+treated.mean <- rowSums( counts[ ,control$id] )/4 
+names(treated.mean) <- counts$ensgene
+```
+
+```{r}
+meancounts <- data.frame(control.mean, treated.mean)
+```
+
+
+
+
+
+
+

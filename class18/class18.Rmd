@@ -1,0 +1,113 @@
+---
+title: "Untitled"
+author: "Mary Garcia"
+date: "5/30/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+##Exploring the Cancer genome Atlas
+```{r}
+#Install the packages
+#library(BiocManager)
+#BiocManager::install(c("GenomicDataCommons", "TCGAbiolinks", "maftools"))
+```
+
+```{r}
+library(GenomicDataCommons)
+library(TCGAbiolinks)
+library(maftools)
+```
+
+Can we talk with the NCI-GDC?
+```{r}
+GenomicDataCommons::status()
+```
+
+Q9
+```{r}
+cases_by_project <- cases() %>%
+  facet("project.project_id") %>%
+  aggregations()
+head(cases_by_project)
+```
+
+
+Make a summary plot for this data
+```{r}
+x <- cases_by_project$project.project_id
+
+# Make a custom color vector for our plot
+colvec <- rep("lightblue", nrow(x))
+colvec[29] <- "red"
+
+# Plot with 'log' for y axis and rotate labels with 'las'
+#par(___)  
+barplot(x$doc_count, names.arg=x$key , log="y", col=colvec, las=2)
+```
+
+
+4.
+```{r}
+maf.file <- GDCquery_Maf(tumor="PAAD", pipelines = "mutect")
+head(maf.file)
+```
+
+
+
+
+##PT 2
+
+Which positions are different -> run alignment and identify non-identical sites
+Get the 9-mer around these sites...
+
+```{r}
+library(bio3d)
+seqs <- read.fasta("lecture18_sequences.fa")
+seqs
+```
+
+```{r}
+seqs <- seqaln(seqs)
+head(seqs)
+```
+
+```{r}
+ide <- conserv(seqs, method = "identity")
+ide
+```
+
+```{r}
+mis.match.sites <- which(ide<1)
+gap.sites <- gap.inspect(seqs)$t.inds
+```
+
+```{r}
+tumor.sites <- mis.match.sites[ !mis.match.sites %in% gap.sites]
+tumor.sites
+```
+
+Now get the sequence with all possible 9-mers
+
+```{r}
+start.position <- tumor.sites - 8
+end.position <- tumor.sites + 8
+```
+
+```{r}
+start.position[1] : end.position[1]
+```
+
+Get the tumor sequence
+```{r}
+seqs$ali[2,start.position[1] : end.position[1]]
+```
+
+
+
+
+
+

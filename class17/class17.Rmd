@@ -1,0 +1,163 @@
+---
+title: "Class 17"
+author: "Mary Garcia"
+date: "5/28/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Set up Cytoscape and R connection
+
+We will use the **RCy3** and **igraph** packages in this class. The first is from bioconductor the second from CRAN
+
+```{r install, eval=FALSE}
+BiocManager::install("RCy3")
+
+install.packages("igraph")
+```
+
+```{r}
+library(RCy3)
+library(igraph)
+```
+
+Lets check if we can talk to cytoscape
+
+```{r}
+# Test the connection to Cytoscape.
+cytoscapePing()
+```
+
+```{r}
+# Check the version
+cytoscapeVersionInfo()
+```
+
+```{r}
+g <- makeSimpleIgraph()
+createNetworkFromIgraph(g,"myGraph")
+```
+
+Change the network display style in cytoscape
+```{r}
+setVisualStyle("Marquee")
+```
+
+```{r}
+fig <- exportImage(filename="demo", type="png", height=350)
+knitr::include_graphics("./demo_marquee.png")
+```
+
+```{r}
+g
+```
+
+```{r}
+plot(g)
+```
+
+
+
+
+
+
+##Read our metagenomics data
+
+```{r}
+## scripts for processing located in "inst/data-raw/"
+prok_vir_cor <- read.delim("virus_prok_cor_abundant.tsv", stringsAsFactors = FALSE)
+
+## Have a peak at the first 6 rows
+head(prok_vir_cor)
+```
+
+Use the igraph dunction **graph.dataframs()** to make a network graph
+```{r}
+g <- graph.data.frame(prok_vir_cor, directed = FALSE)
+```
+
+```{r}
+plot(g)
+```
+
+This is a hot-mess! We gotta fix it!
+```{r}
+#Turn off the node (vertex) labels and make the vertex size smaller
+plot(g, vertex.size=3, vertex.label=NA)
+```
+
+```{r}
+library(ggraph)
+ggraph(g, layout = 'auto') +
+  geom_edge_link(alpha = 0.25) +
+  geom_node_point(color="steelblue") +
+  theme_graph()
+```
+
+
+Send this network to cytoscape
+```{r}
+createNetworkFromIgraph(g,"myIgraph")
+```
+
+
+```{r}
+cb <- cluster_edge_betweenness(g)
+```
+
+```{r}
+cb
+```
+
+```{r}
+plot(cb, y=g, vertex.label=NA,  vertex.size=3)
+```
+
+```{r}
+head( membership(cb) )
+```
+
+```{r}
+# Calculate and plot node degree of our network
+d <- degree(g)
+hist(d, breaks=30, col="lightblue", main ="Node Degree Distribution")
+
+plot( degree_distribution(g), type="h" )
+```
+
+```{r}
+pr <- page_rank(g)
+head(pr$vector)
+
+b <- betweenness(g)
+v.size <- BBmisc::normalize(b, range=c(2,20), method="range")
+plot(g, vertex.size=v.size, vertex.label=NA)
+```
+
+```{r}
+phage_id_affiliation <- read.delim("phage_ids_with_affiliation.tsv")
+head(phage_id_affiliation)
+
+bac_id_affi <- read.delim("prok_tax_from_silva.tsv", stringsAsFactors = FALSE)
+head(bac_id_affi)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

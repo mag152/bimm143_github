@@ -1,0 +1,173 @@
+---
+title: "Class 11: Structural Bioinformatics"
+author: "Mary Garcia"
+date: "May 7, 2019"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## The PDB Database
+
+The [PDB] (https://www.rcsb.org/) is the main repository for biomolecualar structura data 
+
+Here we examine the contents of the PDB:
+
+
+```{r}
+db <- read.csv("Data Export Summary.csv")
+head(db)
+```
+
+How many are X-Ray, etc...
+```{r}
+(db$Total[1]/sum(db$Total)) * 100
+```
+
+What percent are Protein...
+```{r}
+(sum(db$Proteins)/sum(db$Total)) * 100
+```
+
+
+```{r}
+#library(datapasta)
+#go to Addins
+```
+
+
+>Q2
+
+1157  as of 2019 - 05- 07 See : 
+
+```{r}
+library(bio3d)
+pdb <- read.pdb("1hsg.pdb")
+pdb
+```
+
+
+```{r}
+attributes(pdb)
+```
+
+```{r}
+head(pdb$atom)
+```
+
+```{r}
+ca.inds <- atom.select(pdb,"calpha")
+ca.inds
+```
+
+```{r}
+head(pdb$atom[ca.inds$atom, ])
+```
+
+
+>Q8
+
+```{r}
+pdb$atom$resid
+```
+
+
+Atom selection is done viathe function **atom.select()**
+
+```{r}
+prot.pdb <- atom.select(pdb, "protein", value=TRUE)
+
+write.pdb(prot.pdb, file="1hsg_protein.pdb")
+```
+
+```{r}
+lig.pdb <- atom.select(pdb,"ligand", value = TRUE)
+write.pdb(lig.pdb, file="1hsg_ligand.pdb")
+```
+
+
+```{r}
+pdb$atom[inds$atom, ]
+```
+
+
+
+
+
+# Section 4: Working with multiple PDB files
+
+
+
+
+
+//////////////////////////////////////////////////////
+
+```{r}
+#Q1: Download a CSV file from the PDB site (accessible from “Analyze” -> “PDB Statistics” > “by Experimental Method and Molecular Type”. Move this CSV file into your RStudio project and determine the percentage of structures solved by X-Ray and Electron Microscopy. From the website what proportion of structures are protein?
+db <- read.csv("Data Export Summary.csv")
+# % of structures solve by X-Ray and Electron Microscopy
+#For X-Ray:
+(db$Total[1]/sum(db$Total)) * 100
+#For Electron Microscopy:
+(db$Total[3]/sum(db$Total)) * 100
+
+#Q2: Type HIV in the PDB website search box on the home page and determine how many HIV-1 protease structures are in the current PDB?
+#1920 (?????????????????????????????????????????????????????)
+```
+
+```{r}
+#Q3: Water molecules normally have 3 atoms. Why do we see just one atom per water molecule in this structure?
+#(?????????????????????????????????????????????)
+#Q4: There is a conserved water molecule in the binding site. Can you identify this water molecule? What residue number does this water molecule have (see note below)?
+#(????????????????????????????????????????????)
+#Q5: As you have hopefully observed HIV protease is a homodimer (i.e. it is composed of two identical chains). With the aid of the graphic display and the sequence viewer extension can you identify secondary structure elements that are likely to only form in the dimer rather than the monomer?
+#(??????????????????????????????????????????????????)
+```
+SECTION 3
+```{r}
+library(bio3d)
+```
+#To read a single PDB file with Bio3D we can use the read.pdb() function. The minimal input required for this function is a specification of the file to be read. This can be either the file name of a local file on disc, or the RCSB PDB identifier of a file to read directly from the on-line PDB repository. For example to read and inspect the on-line file with PDB ID 4q21:
+```{r}
+pdb <- read.pdb("1hsg")
+pdb
+```
+Q6. How many amino acid residues are there in this pdb object and what are the two nonprotein residues?
+```{r}
+#Residues/Calpha atoms #: 198
+#Non-protein/nucleic resid values: [ HOH (127), MK1 (1) ]
+```
+Q7. What type of R object is pdb$atom? HINT: You can always use the str() function to get a useful summery of any R object.
+```{r}
+str(pdb$atom)
+#pdb$atom is a data.frame
+```
+
+
+
+```{r}
+attributes(pdb)
+head(pdb$atom)
+# Print a subset of $atom data for the first two atoms
+pdb$atom[1:2, c("eleno", "elety", "x","y","z")]
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
