@@ -2,7 +2,7 @@
 
 ## Index of Material
 
-Class 5: [Data exploration and visualization in R](https://github.com/mag152/bimm143_github/tree/master/class05)
+Class 5: [Data exploration and visualization in R](https://github.com/mag152/bimm143_github/blob/master/class05/class05.md)
 
 Class 6: [Why, when and how of writing your own R functions](https://github.com/mag152/bimm143_github/tree/master/class06)
 
