@@ -1,37 +1,29 @@
-## Welcome to GitHub Pages
+# Bioinformatics Class BIMM 142
 
-You can use the [editor on GitHub](https://github.com/mag152/bimm143_github/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+## Index of Material
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+Class 5: [Data exploration and visualization in R](https://github.com/mag152/bimm143_github/tree/master/class05)
 
-### Markdown
+Class 6: [Why, when and how of writing your own R functions](https://github.com/mag152/bimm143_github/tree/master/class06)
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+Class 7: [Bioinformatics R packages from CRAN and BioConductor](https://github.com/mag152/bimm143_github/tree/master/class07)
 
-```markdown
-Syntax highlighted code block
+Class 8: [Introduction to machine learning for Bioinformatics 1](https://github.com/mag152/bimm143_github/tree/master/class08)
 
-# Header 1
-## Header 2
-### Header 3
+Class 9: [Unsupervised learning mini-project](https://github.com/mag152/bimm143_github/tree/master/class09)
 
-- Bulleted
-- List
+Class 11: [Structural Bioinformatics (Part 1)](https://github.com/mag152/bimm143_github/tree/master/class11)
 
-1. Numbered
-2. List
+Class 12: [Bioinformatics in drug discovery and design](https://github.com/mag152/bimm143_github/tree/master/class12)
 
-**Bold** and _Italic_ and `Code` text
+Class 13: [Genome informatics and high throughput sequencing (Part 1)](https://github.com/mag152/bimm143_github/tree/master/class13)
 
-[Link](url) and ![Image](src)
-```
+Class 14: [Transcriptomics and the analysis of RNA-Seq data](https://github.com/mag152/bimm143_github/tree/master/class14)
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+Class 15: [Genome annotation and the interpretation of gene lists](https://github.com/mag152/bimm143_github/tree/master/class15)
 
-### Jekyll Themes
+Class 16: [Essential UNIX for bioinformatics](https://github.com/mag152/bimm143_github/tree/master/class16)
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/mag152/bimm143_github/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+Class 17: [Biological network analysis](https://github.com/mag152/bimm143_github/tree/master/class17)
 
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+Class 18: [Cancer genomics](https://github.com/mag152/bimm143_github/tree/master/class18)
