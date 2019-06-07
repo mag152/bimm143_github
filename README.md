@@ -14,7 +14,7 @@ Class 9: [Unsupervised learning mini-project](https://github.com/mag152/bimm143_
 
 Class 11: [Structural Bioinformatics (Part 1)](https://github.com/mag152/bimm143_github/blob/master/class11/class11.md)
 
-Class 12: [Bioinformatics in drug discovery and design](https://github.com/mag152/bimm143_github/blob/master/class12/class12.md)
+Class 12: [Bioinformatics in drug discovery and design](https://github.com/mag152/bimm143_github/blob/master/class12/class_12.md)
 
 Class 13: [Genome informatics and high throughput sequencing (Part 1)](https://github.com/mag152/bimm143_github/blob/master/class13/class13.md)
 
